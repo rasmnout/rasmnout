@@ -1,21 +1,33 @@
-import os
-with open("/rasmnout/sys/output.log","r") as f:
-  content = f.read()
-print(content)
+import subprocess
 
-os.system("clear")
+print("[INFO] Sucessfully started HTTP EXECUTER")
 
-try:
-  while True:
-    with open("/rasmnout/sys/output.log","r") as f:
-      new_content = f.read()
-      if not new_content == content:
-        print(new_content)
-        content = new_content
-      else:
-        pass
-except Exception as e:
-    print(f"[ERROR] {e}")
-except KeyboardInterrupt:
-  os.system("sudo shutdown -r now")
-    
+def start_exe():
+    try:
+        with open("/rasmnout/sys/output.log", "+r") as f:
+            fg = f.read()
+            while True:
+                f.seek(0)
+                fgg = f.read()
+                if fgg == fg:
+                    pass
+                else:
+                    fg = fgg
+                    process = subprocess.Popen(fgg, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    output, error = process.communicate()
+                    print(output.decode())
+                    status = "sucessfully"
+                    if error:
+                        print("[PROBLEM] PROBLEM:")
+                        print(error.decode())
+                        status = "error"
+                    with open("/rasmnout/log/all-output.log","a") as f:
+                      f.write(output.decode())
+                    with open("/rasmnout/log/output.log","w") as f:
+                      f.write(output.decode())
+                    with open("/rasmnout/log/status.log","w") as f:
+                      f.write(status)
+    except FileNotFoundError:
+        print("[PROBLEM] error with file execute.rsmnt")
+
+start_exe()
