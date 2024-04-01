@@ -1,4 +1,6 @@
-echo -e "rasmnout" | sudo -S python3 /rasmnout/sys/starter.py
+echo -e "rasmnout" | sudo -S systemctl stop apache2
+sudo systemctl enable apache2
+sudo systemctl start apache2
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
