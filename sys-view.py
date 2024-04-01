@@ -1,6 +1,6 @@
 import subprocess
 
-def start_exe():
+def run():
     try:
         with open("/rasmnout/sys/output.log", "+r") as f:
             fg = f.read()
@@ -28,4 +28,4 @@ def start_exe():
     except FileNotFoundError:
         print("[PROBLEM] error with file execute.rsmnt")
 
-start_exe()
+run()
