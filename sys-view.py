@@ -2,8 +2,9 @@
 with open("/rasmnout/sys/output.log","r") as f:
   content = f.read()
 print(content)
-while True:
-  try:
+
+try:
+  while True:
     with open("/rasmnout/sys/output.log","r") as f:
       new_content = f.read()
       if not new_content == content:
@@ -11,5 +12,8 @@ while True:
         content = new_content
       else:
         pass
-  except Exception as e:
+except Exception as e:
     print(f"[ERROR] {e}")
+except KeyboardInterrupt:
+  os.system("sudo shutdown -r now")
+    
