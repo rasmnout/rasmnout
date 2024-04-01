@@ -1,7 +1,5 @@
 import subprocess
 
-print("[INFO] Sucessfully started HTTP EXECUTER")
-
 def start_exe():
     try:
         with open("/rasmnout/sys/output.log", "+r") as f:
