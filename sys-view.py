@@ -1,7 +1,5 @@
 import subprocess
 
-print("[INFO] Successfully started HTTP EXECUTER")
-
 def run():
     try:
         with open("/rasmnout/log/execute.log", "r") as f:
