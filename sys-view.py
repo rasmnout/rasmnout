@@ -3,6 +3,8 @@ with open("/rasmnout/sys/output.log","r") as f:
   content = f.read()
 print(content)
 
+os.system("clear")
+
 try:
   while True:
     with open("/rasmnout/sys/output.log","r") as f:
